@@ -3,7 +3,7 @@ import java.util.*;
 public class LinkedList
 {
   Node head=null;
-  class Node
+  static class Node
   {
     int data;
     Node next;
@@ -32,12 +32,34 @@ public class LinkedList
     }
     return list;
   }
+
+  public static LinkedList Delete(LinkedList list, int val)
+  {
+    if(list.head==null) return null;
+    Node currNode=list.head;
+    Node Buff_node;
+    if(list.head.data==val)
+    {
+      list.head=null;
+      list.head=currNode.next;
+    }
+    else
+    {
+      while(currNode.next.data!=val)
+      {
+        currNode=currNode.next;
+      }
+      currNode.next=currNode.next.next;
+    }
+    return list;
+  }
+
 public static void display(LinkedList list)
 {
   Node curr=list.head;
-  while(curr.next!=null)
+  while(curr!=null)
   {
-    System.out.print(curr+" ");
+    System.out.print(curr.data+" ");
     curr=curr.next;
   }
   System.out.println();
@@ -50,6 +72,7 @@ public static void main(String[] args)
   Insert(num,20);
   Insert(num,23);
   Insert(num,32);
+  Delete(num,23);
   display(num);
 }
 
